@@ -1,8 +1,5 @@
+import 'package:experiment4/foodapp.dart';
 import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-
-import 'foodapp.dart';
 
 void main() {
   runApp(const MyApp());
