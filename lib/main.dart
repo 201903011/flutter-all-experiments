@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Theme.dart';
 import 'foodapp.dart';
 
 void main() {
@@ -16,8 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.light,
-      theme: MyTheme.lightTheme(context),
-      darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
       home: FoodApp(),
     );

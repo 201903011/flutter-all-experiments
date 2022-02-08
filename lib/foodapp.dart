@@ -1,3 +1,5 @@
+import 'package:experiment4/Prod_Image.dart';
+import 'package:experiment4/card_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,132 +8,85 @@ class FoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Delicious Food'),
-        centerTitle: true,
+        title: const Text('Food App'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_shopping_cart),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text('cart is here')));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('search is not available')));
+            },
+          ),
+        ],
       ),
-      body: buildContent(),
-      backgroundColor: Colors.greenAccent,
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/myfood.jpeg',
+                  ),
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/icecream.jpeg',
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/food.jpeg',
+                  ),
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/juice.jpeg',
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/myfood.jpeg',
+                  ),
+                  Prod1(
+                    w1: width - 16,
+                    im: 'images/icecream.jpeg',
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(26.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('You are submitted')));
+                  },
+                  child: Text("Submit"),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: Colors.indigo.shade50,
     );
-  }
-
-  Padding buildContent() {
-    return Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              color: Colors.transparent,
-              child: SizedBox(
-                width: 20,
-                height: 100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.add_shopping_cart,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      'Foods',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26,
-                      ),
-                    ),
-                    Opacity(
-                      opacity: 1,
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              color: Colors.transparent,
-              child: SizedBox(
-                  width: 20,
-                  height: 300,
-                  child: Row(
-                    children: [
-                      Column(
-                        children: <Widget>[
-                          Image.asset('images/food.jpeg',
-                              width: 100, height: 200),
-                          Text(
-                            'Lunch Items',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Image.asset('images/icecream.jpeg',
-                              width: 100, height: 200),
-                          Text(
-                            'Icecreams',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Image.asset('images/juice.jpeg',
-                              width: 100, height: 200),
-                          Text(
-                            'Juices',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(120),
-                ),
-              ),
-              onPressed: () {
-                print('Button Pressed');
-              },
-              child: const Text(
-                'Submit',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ));
   }
 }
