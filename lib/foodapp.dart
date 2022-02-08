@@ -1,5 +1,6 @@
 import 'package:experiment4/Prod_Image.dart';
 import 'package:experiment4/card_tile.dart';
+import 'package:experiment4/my_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class FoodApp extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         title: const Text('Food App'),
         actions: <Widget>[
