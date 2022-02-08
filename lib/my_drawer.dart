@@ -1,3 +1,5 @@
+import 'package:experiment4/foodapp.dart';
+import 'package:experiment4/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +25,24 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.home,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Home",
-                textScaleFactor: 1.2,
-                style: TextStyle(
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FoodApp()),
+                );
+              },
+              child: ListTile(
+                leading: Icon(
+                  CupertinoIcons.home,
                   color: Colors.white,
+                ),
+                title: Text(
+                  "Home",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -62,16 +72,24 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.settings,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Settings",
-                textScaleFactor: 1.2,
-                style: TextStyle(
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+                );
+              },
+              child: ListTile(
+                leading: Icon(
+                  CupertinoIcons.settings,
                   color: Colors.white,
+                ),
+                title: Text(
+                  "Settings",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             )
