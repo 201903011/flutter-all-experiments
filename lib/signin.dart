@@ -1,16 +1,16 @@
-import 'package:experiment4/signin.dart';
+import 'package:experiment4/login.dart';
 import 'package:flutter/material.dart';
-import 'dart:html';
+
 import 'foodapp.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _LoginState extends State<Login> {
+class _SignInState extends State<SignIn> {
   String name = "";
   bool changebutton = false;
 
@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
       await Future.delayed(Duration(seconds: 1));
       await Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const FoodApp()),
+        MaterialPageRoute(builder: (context) => const Login()),
       );
       setState(() {
         changebutton = false;
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
         child: Column(
           children: [
             Image.asset(
-              "./images/login.png",
+              "./images/signin.png",
               fit: BoxFit.cover,
             ),
             Text(
@@ -106,7 +106,7 @@ class _LoginState extends State<Login> {
                                   color: Colors.white,
                                 )
                               : Text(
-                                  "Login",
+                                  "Signin",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -127,12 +127,12 @@ class _LoginState extends State<Login> {
                       height: 15,
                     ),
                     InkWell(
-                      child: Text("Not have account Sign in"),
+                      child: Text("Already have account Login"),
                       onTap: () async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SignIn()),
+                              builder: (context) => const Login()),
                         );
                       },
                     )
