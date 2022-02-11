@@ -8,11 +8,17 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
+      backgroundColor: Colors.indigo.shade50,
       appBar: AppBar(
-        title: const Text('Second Route'),
+        title: const Text('Settings'),
       ),
       body: Center(
-        child: Text("settings"),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
       ),
     );
   }
