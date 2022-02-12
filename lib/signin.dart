@@ -1,13 +1,13 @@
-import 'package:experiment4/login.dart';
+import 'package:experiment4/foodapp.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'foodapp.dart';
+import 'login.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
@@ -22,15 +22,28 @@ class _SignInState extends State<SignIn> {
         changebutton = true;
       });
       await Future.delayed(Duration(seconds: 1));
-      await Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Login()),
-      );
+      try {
+        final newuser = await _auth.createUserWithEmailAndPassword(
+            email: _email, password: _password);
+        if (newuser != null) {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FoodApp()),
+          );
+        }
+      } catch (e) {
+        print(e);
+      }
+
       setState(() {
         changebutton = false;
       });
     }
   }
+
+  final _auth = FirebaseAuth.instance;
+  late String _email;
+  late String _password;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +53,7 @@ class _SignInState extends State<SignIn> {
         child: Column(
           children: [
             Image.asset(
-              "./images/signin.png",
+              "assets/images/signin.png",
               fit: BoxFit.cover,
             ),
             Text(
@@ -70,11 +83,15 @@ class _SignInState extends State<SignIn> {
                       },
                       onChanged: (value) {
                         name = value;
+                        _email = value;
                         setState(() {});
                       },
                     ),
                     TextFormField(
                       obscureText: true,
+                      onChanged: (value) {
+                        _password = value;
+                      },
                       decoration: InputDecoration(
                         hintText: "Enter Password",
                         labelText: "Password",
@@ -116,13 +133,6 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     ),
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     Navigator.pushNamed(context, MyRoutes.HomeRoute);
-                    //   },
-                    //   child: Text("Login"),
-                    //   style: TextButton.styleFrom(minimumSize: Size(150, 40)),
-                    // )
                     SizedBox(
                       height: 15,
                     ),

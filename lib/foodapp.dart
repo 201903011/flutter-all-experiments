@@ -1,8 +1,7 @@
-import 'package:experiment4/Prod_Image.dart';
-import 'package:experiment4/card_tile.dart';
-import 'package:experiment4/my_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'Mydrawer.dart';
+import 'cardtile.dart';
 
 class FoodApp extends StatelessWidget {
   const FoodApp({Key? key}) : super(key: key);
@@ -36,55 +35,57 @@ class FoodApp extends StatelessWidget {
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/myfood.jpeg',
-                  ),
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/icecream.jpeg',
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/food.jpeg',
-                  ),
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/juice.jpeg',
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/myfood.jpeg',
-                  ),
-                  Prod1(
-                    w1: width - 16,
-                    im: 'images/icecream.jpeg',
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(26.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('You are submitted')));
-                  },
-                  child: Text("Submit"),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/myfood.jpeg',
+                    ),
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/icecream.jpeg',
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/food.jpeg',
+                    ),
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/juice.jpeg',
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/myfood.jpeg',
+                    ),
+                    Prod1(
+                      w1: width - 16,
+                      im: 'assets/images/icecream.jpeg',
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(26.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('You are submitted')));
+                    },
+                    child: Text("Submit"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

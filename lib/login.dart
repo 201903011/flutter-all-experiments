@@ -1,13 +1,13 @@
+import 'package:experiment4/foodapp.dart';
 import 'package:experiment4/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:html';
-import 'foodapp.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
@@ -22,16 +22,28 @@ class _LoginState extends State<Login> {
         changebutton = true;
       });
       await Future.delayed(Duration(seconds: 1));
-      await Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const FoodApp()),
-      );
+      try {
+        final user = await _auth
+            .signInWithEmailAndPassword(email: _email, password: _password)
+            .then(
+              (user) => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FoodApp()),
+              ),
+            );
+      } on Exception catch (e) {
+        // TODO
+      }
+
       setState(() {
         changebutton = false;
       });
     }
   }
 
+  final _auth = FirebaseAuth.instance;
+  late String _email;
+  late String _password;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -40,7 +52,7 @@ class _LoginState extends State<Login> {
         child: Column(
           children: [
             Image.asset(
-              "./images/login.png",
+              "assets/images/login.png",
               fit: BoxFit.cover,
             ),
             Text(
@@ -70,6 +82,7 @@ class _LoginState extends State<Login> {
                       },
                       onChanged: (value) {
                         name = value;
+                        _email = value;
                         setState(() {});
                       },
                     ),
@@ -79,6 +92,9 @@ class _LoginState extends State<Login> {
                         hintText: "Enter Password",
                         labelText: "Password",
                       ),
+                      onChanged: (value) {
+                        _password = value;
+                      },
                       validator: (String? value) {
                         if (value!.isEmpty) {
                           return "Password can't be empty";
